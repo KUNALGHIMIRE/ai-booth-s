@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Photo Booth</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>📸 AI Photo Booth</h1>
+        <p>Take a photo and transform it!</p>
+
+        <div class="preview-wrapper">
+            <video id="camera" autoplay playsinline width="640" height="480"></video>
+            <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
+        </div>
+
+        <!-- Filter Controls -->
+        <div id="filterPanel" style="display:none;">
+
+            <label class="control-label">🎨 Filter Preset</label>
+            <div class="filter-presets" id="filterPresets">
+                <button class="preset-btn active" data-filter="normal">Normal</button>
+                <button class="preset-btn" data-filter="clarendon">Clarendon</button>
+                <button class="preset-btn" data-filter="gingham">Gingham</button>
+                <button class="preset-btn" data-filter="moon">Moon</button>
+                <button class="preset-btn" data-filter="lark">Lark</button>
+                <button class="preset-btn" data-filter="reyes">Reyes</button>
+                <button class="preset-btn" data-filter="juno">Juno</button>
+                <button class="preset-btn" data-filter="valencia">Valencia</button>
+            </div>
+
+            <label class="control-label">🖼️ Frame Style</label>
+            <div class="frame-presets" id="framePresets">
+                <button class="frame-btn active" data-frame="none">🚫 None</button>
+                <button class="frame-btn" data-frame="classic">🖼️ Classic</button>
+                <button class="frame-btn" data-frame="polaroid">📷 Polaroid</button>
+                <button class="frame-btn" data-frame="story">📱 Story</button>
+                <button class="frame-btn" data-frame="heart">❤️ Heart</button>
+                <button class="frame-btn" data-frame="gold">🏆 Gold</button>
+                <button class="frame-btn" data-frame="neon">💜 Neon</button>
+            </div>
+
+            <label class="control-label">Filter Intensity: <span id="intensityVal">100</span>%</label>
+            <input type="range" id="intensity" min="0" max="100" value="100" class="slider">
+
+            <label class="control-label">Brightness: <span id="brightnessVal">100</span>%</label>
+            <input type="range" id="brightness" min="50" max="150" value="100" class="slider">
+
+            <label class="control-label">Contrast: <span id="contrastVal">100</span>%</label>
+            <input type="range" id="contrast" min="50" max="150" value="100" class="slider">
+
+            <label class="control-label">Saturation: <span id="saturationVal">100</span>%</label>
+            <input type="range" id="saturation" min="0" max="200" value="100" class="slider">
+
+            <label class="control-label">🤖 AI Backend Style</label>
+            <select id="style">
+                <option value="none">🚫 None (use filter + frame only)</option>
+                <option value="cartoon">🎨 Cartoon</option>
+                <option value="lineart">✏️ Line Art</option>
+            </select>
+
+        </div>
+
+        <div class="controls">
+            <button id="startCamera">📷 Start Camera</button>
+            <button id="takePhoto" disabled>📸 Take Photo</button>
+            <button id="generate" disabled>✨ Generate</button>
+            <button id="retake" disabled>🔄 Retake</button>
+        </div>
+
+        <p id="status">Click "Start Camera" to begin.</p>
+
+        <div id="result" style="display:none;">
+            <h2>Your Result</h2>
+            <img id="resultImage" alt="Generated photo" style="max-width: 100%;">
+            <br>
+            <a id="download" download="ai-photo.png">⬇️ Download Image</a>
+            <h3>📱 Scan this QR code</h3>
+            <img id="qrCode" alt="QR Code">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
